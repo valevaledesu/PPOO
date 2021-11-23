@@ -196,7 +196,7 @@ public class fechagui2 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				tfcombi.setText(comboBox.getSelectedItem().toString());
 				limpiaControles();
-				lblNewLabel.setText("Registro vacio");
+				lblNewLabel.setText("Registro");
 				
 			}
 		});

@@ -20,10 +20,12 @@ import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 
 public class fechagui2 extends JFrame {
 
-	private Combi arrayCombis[]= new Combi[5] ;
+	private Combi arrayCombis[]= new Combi[7] ;
+	private ruta arrayRuta[]= new ruta[2] ;
 	private JPanel contentPane;
 	private JTextField tfruta;
 	private JTextField tfcombi;
@@ -32,6 +34,9 @@ public class fechagui2 extends JFrame {
 	private JTextField textsalida;
 	private JTextField texttiempo;
 	private JTextField textruta;
+	private boolean x= false;
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -53,10 +58,14 @@ public class fechagui2 extends JFrame {
 	 
 	 
 	public fechagui2() {
-		arrayCombis[1]= new Combi ("Conductor ", 1, null, null,0, 1, "ruta");
-		arrayCombis[2]= new Combi ("Conductor2", 2, null, null,0, 1, "ruta");
-		arrayCombis[3]= new Combi ("Conductor3", 3, null, null,0, 2, "ruta2");
-		arrayCombis[4]= new Combi ("Conductor4", 4, null, null,0, 2, "ruta2");
+		arrayCombis[1]= new Combi ("Conductor ", 1, null, null,0, 1, "Ruta norte");
+		arrayCombis[2]= new Combi ("Conductor2", 2, null, null,0, 1, "Ruta norte");
+		arrayCombis[3]= new Combi ("Conductor3", 3, null, null,0, 1, "Ruta norte");
+		arrayCombis[4]= new Combi ("Conductor4", 4, null, null,0, 2, "Ruta sur");
+		arrayCombis[5]= new Combi ("Conductor5", 5, null, null,0, 2, "Ruta sur");
+		arrayCombis[6]= new Combi ("Conductor6", 6, null, null,0, 2, "Ruta sur");
+		arrayRuta[0]=new ruta(1,"Ruta norte");
+		arrayRuta[0]=new ruta(2,"Ruta sur");
 
 			
 		 
@@ -68,7 +77,7 @@ public class fechagui2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(309, 16, 285, 16);
+		lblNewLabel.setBounds(307, 15, 285, 16);
 		contentPane.add(lblNewLabel);
 		
 		ArrayList<LocalTime> tiempos = new ArrayList<LocalTime>();
@@ -81,7 +90,9 @@ public class fechagui2 extends JFrame {
 				try {
 				int combiident=Integer.parseInt(tfcombi.getText());
 				arrayCombis[combiident].setSalida(ahora.toString());
+				textsalida.setText(arrayCombis[combiident].getSalida());
 				lblNewLabel.setText("Se registro la hora: " +ahora.toString()+ " salida");
+				x=true;
 				} catch (Exception ArrayIndexOutOfBoundsException){
 					JOptionPane.showMessageDialog(null, "No ingreso numero de combi");
 				}
@@ -96,7 +107,8 @@ public class fechagui2 extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		tfruta = new JTextField();
-		tfruta.setBounds(51, 15, 45, 19);
+		tfruta.setEditable(false);
+		tfruta.setBounds(51, 15, 109, 19);
 		contentPane.add(tfruta);
 		tfruta.setColumns(10);
 		
@@ -106,7 +118,7 @@ public class fechagui2 extends JFrame {
 		
 		tfcombi = new JTextField();
 		tfcombi.setEditable(false);
-		tfcombi.setBounds(51, 106, 45, 19);
+		tfcombi.setBounds(51, 41, 45, 19);
 		contentPane.add(tfcombi);
 		tfcombi.setColumns(10);
 		
@@ -121,7 +133,8 @@ public class fechagui2 extends JFrame {
 				tiempos.add(ahora);
 				try {
 					int combiident=Integer.parseInt(tfcombi.getText());
-					arrayCombis[combiident].setLlegada(ahora.toString());;
+					arrayCombis[combiident].setLlegada(ahora.toString());
+					textllegada.setText(arrayCombis[combiident].getLlegada());
 					lblNewLabel.setText("Se registro la hora: " +ahora.toString()+ " llegada");
 
 					} catch (Exception ArrayIndexOutOfBoundsException){		
@@ -191,22 +204,46 @@ public class fechagui2 extends JFrame {
 		lblNewLabel_4_4.setBounds(201, 295, 100, 11);
 		contentPane.add(lblNewLabel_4_4);
 		
+		
+	
+		
+		
 		JComboBox comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tfcombi.setText(comboBox.getSelectedItem().toString());
 				limpiaControles();
 				lblNewLabel.setText("Registro");
-				
+				tfruta.setText(arrayCombis[Integer.parseInt(comboBox.getSelectedItem().toString())].getRuta());
+				int combiident=Integer.parseInt(tfcombi.getText());
+				textconductor.setText(arrayCombis[combiident].getConductor());
+				textllegada.setText(arrayCombis[combiident].getLlegada());
+				textsalida.setText(arrayCombis[combiident].getSalida());
+				textruta.setText(arrayCombis[combiident].getRuta());
+				texttiempo.setText(String.valueOf(arrayCombis[combiident].getTiempo()));
 			}
 		});
-		comboBox.setBounds(115, 106, 45, 19);
+		comboBox.setBounds(51, 106, 45, 19);
 		contentPane.add(comboBox);
 		comboBox.addItem("1");
 		comboBox.addItem("2");
 		comboBox.addItem("3"); 
+		comboBox.addItem("4"); 
+		comboBox.addItem("5"); 
+		comboBox.addItem("6"); 
 		
-	
+		JCheckBox cbsalida = new JCheckBox("");
+		cbsalida.setEnabled(false);
+		cbsalida.setBounds(564, 49, 28, 29);
+		contentPane.add(cbsalida);
+		
+		JCheckBox cbllegada = new JCheckBox("");
+		cbllegada.setEnabled(false);
+		cbllegada.setBounds(564, 109, 28, 26);
+		contentPane.add(cbllegada);
+		
+		
+		
 	
 	
 	}
@@ -219,4 +256,5 @@ public class fechagui2 extends JFrame {
 		textruta.setText("");
 
 			}
+
 }

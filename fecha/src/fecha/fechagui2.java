@@ -77,7 +77,7 @@ public class fechagui2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(307, 15, 285, 16);
+		lblNewLabel.setBounds(353, 18, 157, 16);
 		contentPane.add(lblNewLabel);
 		
 		ArrayList<LocalTime> tiempos = new ArrayList<LocalTime>();
@@ -85,8 +85,13 @@ public class fechagui2 extends JFrame {
 		JButton btnSalida = new JButton("Salida");
 		btnSalida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+		
 				LocalTime ahora = LocalTime.now();
 				tiempos.add(ahora);
+					
+					btnSalida.setEnabled(false);
+				
+
 				try {
 				int combiident=Integer.parseInt(tfcombi.getText());
 				arrayCombis[combiident].setSalida(ahora.toString());
@@ -98,32 +103,32 @@ public class fechagui2 extends JFrame {
 				}
 			}
 		});
-		btnSalida.setBounds(441, 49, 117, 29);
+		btnSalida.setBounds(347, 49, 117, 29);
 		contentPane.add(btnSalida);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ruta: ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(10, 15, 45, 16);
+		lblNewLabel_1.setBounds(18, 102, 45, 16);
 		contentPane.add(lblNewLabel_1);
 		
 		tfruta = new JTextField();
 		tfruta.setEditable(false);
-		tfruta.setBounds(51, 15, 109, 19);
+		tfruta.setBounds(61, 100, 109, 19);
 		contentPane.add(tfruta);
 		tfruta.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Combi: ");
-		lblNewLabel_2.setBounds(10, 109, 45, 13);
+		lblNewLabel_2.setBounds(201, 134, 88, 13);
 		contentPane.add(lblNewLabel_2);
 		
 		tfcombi = new JTextField();
 		tfcombi.setEditable(false);
-		tfcombi.setBounds(51, 41, 45, 19);
+		tfcombi.setBounds(61, 130, 45, 19);
 		contentPane.add(tfcombi);
 		tfcombi.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Registrar hora de: ");
-		lblNewLabel_3.setBounds(329, 83, 128, 13);
+		lblNewLabel_3.setBounds(441, 18, 128, 13);
 		contentPane.add(lblNewLabel_3);
 		
 		JButton btnLlegada = new JButton("Llegada");
@@ -138,14 +143,15 @@ public class fechagui2 extends JFrame {
 					lblNewLabel.setText("Se registro la hora: " +ahora.toString()+ " llegada");
 
 					} catch (Exception ArrayIndexOutOfBoundsException){		
-						JOptionPane.showMessageDialog(null, "No ingreso numero de combi");
+						JOptionPane.showMessageDialog(null, "No ingreso número de combi");
 }
+				btnLlegada.setEnabled(false);
 			}
 		});
-		btnLlegada.setBounds(441, 106, 117, 29);
+		btnLlegada.setBounds(464, 49, 117, 29);
 		contentPane.add(btnLlegada);
 		
-		JButton btnReporte = new JButton("Generar reporte de combi");
+		JButton btnReporte = new JButton("Generar Reporte Final");
 		btnReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int combiident=Integer.parseInt(tfcombi.getText());
@@ -156,7 +162,7 @@ public class fechagui2 extends JFrame {
 				texttiempo.setText(String.valueOf(arrayCombis[combiident].getTiempo()));
 			}
 		});
-		btnReporte.setBounds(250, 359, 176, 29);
+		btnReporte.setBounds(138, 372, 176, 29);
 		contentPane.add(btnReporte);
 		
 		textconductor = new JTextField();
@@ -223,24 +229,33 @@ public class fechagui2 extends JFrame {
 				texttiempo.setText(String.valueOf(arrayCombis[combiident].getTiempo()));
 			}
 		});
-		comboBox.setBounds(51, 106, 45, 19);
+		comboBox.setBounds(250, 132, 45, 19);
 		contentPane.add(comboBox);
 		comboBox.addItem("1");
 		comboBox.addItem("2");
 		comboBox.addItem("3"); 
 		comboBox.addItem("4"); 
 		comboBox.addItem("5"); 
-		comboBox.addItem("6"); 
+		comboBox.addItem("6");
 		
-		JCheckBox cbsalida = new JCheckBox("");
-		cbsalida.setEnabled(false);
-		cbsalida.setBounds(564, 49, 28, 29);
-		contentPane.add(cbsalida);
+		JLabel lblNewLabel_5 = new JLabel("New label");
+		lblNewLabel_5.setBounds(32, 34, 61, 16);
+		contentPane.add(lblNewLabel_5);
 		
-		JCheckBox cbllegada = new JCheckBox("");
-		cbllegada.setEnabled(false);
-		cbllegada.setBounds(564, 109, 28, 26);
-		contentPane.add(cbllegada);
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				textsalida.setText("");
+				textllegada.setText("");
+				btnLlegada.setEnabled(true);
+				btnSalida.setEnabled(true);
+				
+				
+			}
+		});
+		btnActualizar.setBounds(381, 372, 117, 29);
+		contentPane.add(btnActualizar);
 		
 		
 		
@@ -256,5 +271,4 @@ public class fechagui2 extends JFrame {
 		textruta.setText("");
 
 			}
-
 }

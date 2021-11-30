@@ -36,7 +36,7 @@ public class fechagui2 extends JFrame {
 	private JTextField textsalida;
 	private JTextField texttiempo;
 	private JTextField textruta;
-	private boolean x= false;
+
 
 
 	/**
@@ -79,7 +79,7 @@ public class fechagui2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(353, 18, 157, 16);
+		lblNewLabel.setBounds(357, 88, 209, 16);
 		contentPane.add(lblNewLabel);
 		
 		ArrayList<LocalTime> tiempos = new ArrayList<LocalTime>();
@@ -91,15 +91,15 @@ public class fechagui2 extends JFrame {
 				LocalTime ahora = LocalTime.now();
 				tiempos.add(ahora);
 					
-					btnSalida.setEnabled(false);
+					
 				
 
 				try {
 				int combiident=Integer.parseInt(tfcombi.getText());
-				arrayCombis[combiident].setSalida(ahora.toString());
+				arrayCombis[combiident].setSalida(ahora.toString().substring(0, 5));
 				textsalida.setText(arrayCombis[combiident].getSalida());
-				lblNewLabel.setText("Se registro la hora: " +ahora.toString()+ " salida");
-				x=true;
+				lblNewLabel.setText("Se registro la hora: " +ahora.toString().substring(0, 5)+ " salida");
+				
 				} catch (Exception ArrayIndexOutOfBoundsException){
 					JOptionPane.showMessageDialog(null, "No ingreso numero de combi");
 				}
@@ -130,7 +130,7 @@ public class fechagui2 extends JFrame {
 		tfcombi.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Registrar hora de: ");
-		lblNewLabel_3.setBounds(441, 18, 128, 13);
+		lblNewLabel_3.setBounds(417, 26, 128, 13);
 		contentPane.add(lblNewLabel_3);
 		
 		JButton btnLlegada = new JButton("Llegada");
@@ -140,14 +140,28 @@ public class fechagui2 extends JFrame {
 				tiempos.add(ahora);
 				try {
 					int combiident=Integer.parseInt(tfcombi.getText());
-					arrayCombis[combiident].setLlegada(ahora.toString());
+					arrayCombis[combiident].setLlegada(ahora.toString().substring(0, 5));
 					textllegada.setText(arrayCombis[combiident].getLlegada());
-					lblNewLabel.setText("Se registro la hora: " +ahora.toString()+ " llegada");
-
+					lblNewLabel.setText("Se registro la hora: " +ahora.toString().substring(0, 5)+ " llegada");
+					
+					String hora1=arrayCombis[combiident].getSalida();
+					int hsal=Integer.parseInt(hora1.substring(0, 2));
+					int msal=Integer.parseInt(hora1.substring(3, 5));
+					
+					String hora2=arrayCombis[combiident].getLlegada();
+					int hlle=Integer.parseInt(hora2.substring(0, 2));
+					int mlle=Integer.parseInt(hora2.substring(3, 5));
+					
+					int tiempoh= hlle-hsal;
+					int timepom= mlle-msal;
+					String tardo= String.valueOf(tiempoh+":"+timepom);
+					arrayCombis[combiident].setTiempo(tardo);
+					texttiempo.setText(String.valueOf(arrayCombis[combiident].getTiempo()));
 					} catch (Exception ArrayIndexOutOfBoundsException){		
-						JOptionPane.showMessageDialog(null, "No ingreso número de combi");
+						JOptionPane.showMessageDialog(null, "No ingreso numero de combi");
+						
 }
-				btnLlegada.setEnabled(false);
+				
 			}
 		});
 		btnLlegada.setBounds(464, 49, 117, 29);
@@ -249,20 +263,7 @@ public class fechagui2 extends JFrame {
 		lblNewLabel_5.setBounds(32, 34, 61, 16);
 		contentPane.add(lblNewLabel_5);
 		
-		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				textsalida.setText("");
-				textllegada.setText("");
-				btnLlegada.setEnabled(true);
-				btnSalida.setEnabled(true);
-				
-				
-			}
-		});
-		btnActualizar.setBounds(381, 372, 117, 29);
-		contentPane.add(btnActualizar);
+		
 		
 		JButton btnGuardar = new JButton("Guardar");
 		

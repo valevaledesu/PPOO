@@ -156,7 +156,7 @@ public class fechagui2 extends JFrame {
 					arrayCombis[combiident].setTiempo(tardo);
 					texttiempo.setText(String.valueOf(arrayCombis[combiident].getTiempo()));
 					} catch (Exception ArrayIndexOutOfBoundsException){		
-						JOptionPane.showMessageDialog(null, "No ingreso numero de combi");
+						JOptionPane.showMessageDialog(null, "No ha registrado hora de salida");
 						
 }
 				

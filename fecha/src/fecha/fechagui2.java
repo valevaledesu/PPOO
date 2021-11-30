@@ -38,7 +38,6 @@ public class fechagui2 extends JFrame {
 	private JTextField textruta;
 
 
-
 	/**
 	 * Launch the application.
 	 */
@@ -95,7 +94,8 @@ public class fechagui2 extends JFrame {
 				
 
 				try {
-				int combiident=Integer.parseInt(tfcombi.getText());
+				int arraymenosuno=Integer.parseInt(tfcombi.getText());
+				int combiident=arraymenosuno-1;
 				arrayCombis[combiident].setSalida(ahora.toString().substring(0, 5));
 				textsalida.setText(arrayCombis[combiident].getSalida());
 				lblNewLabel.setText("Se registro la hora: " +ahora.toString().substring(0, 5)+ " salida");
@@ -139,7 +139,9 @@ public class fechagui2 extends JFrame {
 				LocalTime ahora = LocalTime.now();
 				tiempos.add(ahora);
 				try {
-					int combiident=Integer.parseInt(tfcombi.getText());
+			
+					int arraymenosuno=Integer.parseInt(tfcombi.getText());
+					int combiident=arraymenosuno-1;
 					arrayCombis[combiident].setLlegada(ahora.toString().substring(0, 5));
 					textllegada.setText(arrayCombis[combiident].getLlegada());
 					lblNewLabel.setText("Se registro la hora: " +ahora.toString().substring(0, 5)+ " llegada");
@@ -241,7 +243,7 @@ public class fechagui2 extends JFrame {
 				limpiaControles();
 				lblNewLabel.setText("Registro");
 				tfruta.setText(arrayCombis[Integer.parseInt(comboBox.getSelectedItem().toString())-1].getRuta());
-				//Hace el ajuste del entero que ve el usuario con -1 asÃ­ "1" llama al espacio 0 del array de combis
+				//Hace el ajuste del entero que ve el usuario con -1 así "1" llama al espacio 0 del array de combis
 				int combiident=Integer.parseInt(tfcombi.getText())-1;
 				textconductor.setText(arrayCombis[combiident].getConductor());
 				textllegada.setText(arrayCombis[combiident].getLlegada());

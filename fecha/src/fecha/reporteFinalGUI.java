@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.UIManager;
 import java.awt.Font;
 import javax.swing.JLabel;
@@ -16,10 +18,9 @@ import javax.swing.JButton;
 public class reporteFinalGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textFieldGeneradoPor;
 	private JTextField textField_1;
-	private JTable table;
-	private JTable table_Reporte;
+	private Combi arrayCombis[];
 
 	/**
 	 * Launch the application.
@@ -28,7 +29,9 @@ public class reporteFinalGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					reporteFinalGUI frame = new reporteFinalGUI();
+					Combi[] combis = new Combi[1];
+					combis[0] = new Combi("Hola", 1 , "asdas", "adas", 3,4, "adas");
+					reporteFinalGUI frame = new reporteFinalGUI(combis);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +43,12 @@ public class reporteFinalGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public reporteFinalGUI() {
+	
+	//Constructor del jframe que resibe el array de combis
+	public reporteFinalGUI(Combi arrayCombis[]) {
+		
+		//Guarda el array de combis que nos mando fechagui2 en el array local de la línea 23
+		this.arrayCombis = arrayCombis;
 		setFont(new Font("Apple Symbols", Font.PLAIN, 12));
 		setForeground(UIManager.getColor("TextPane.selectionBackground"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,10 +63,11 @@ public class reporteFinalGUI extends JFrame {
 		lblNewLabel.setBounds(47, 68, 160, 16);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(194, 63, 168, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textFieldGeneradoPor = new JTextField();
+		textFieldGeneradoPor.setBounds(194, 63, 168, 26);
+		contentPane.add(textFieldGeneradoPor);
+		textFieldGeneradoPor.setColumns(10);
+		textFieldGeneradoPor.setText("admin");
 		
 		JLabel lblNewLabel_1 = new JLabel("a las:");
 		lblNewLabel_1.setBounds(374, 68, 61, 16);
@@ -69,14 +78,12 @@ public class reporteFinalGUI extends JFrame {
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		table = new JTable();
-		table.setBounds(96, 308, 352, -145);
-		contentPane.add(table);
+		String[] columnas = {"Conductor", "Llegada", "Salida", "Ruta", "Tiempo"};
+		String[][] filas = {{arrayCombis[0].getConductor(), arrayCombis[0].getLlegada(), 
+			arrayCombis[0].getSalida(), arrayCombis[0].getRuta(), String.valueOf(arrayCombis[0].getTiempo())}};
 		
-		table_Reporte = new JTable();
-		table_Reporte.setForeground(UIManager.getColor("TextField.selectionBackground"));
-		table_Reporte.setBounds(68, 123, 489, 189);
-		contentPane.add(table_Reporte);
+		DefaultTableModel tableModel = new DefaultTableModel();
+		tableModel.addColumn("Nombre");
 		
 		JButton btnExcel = new JButton("Imprimir como Excel");
 		btnExcel.setBounds(441, 335, 161, 29);

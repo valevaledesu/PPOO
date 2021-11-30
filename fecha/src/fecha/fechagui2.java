@@ -23,8 +23,10 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 
 public class fechagui2 extends JFrame {
-
-	private Combi arrayCombis[]= new Combi[7] ;
+	
+	
+	//Se estaban creando 7 combis
+	private Combi arrayCombis[]= new Combi[6];
 	private ruta arrayRuta[]= new ruta[2] ;
 	private JPanel contentPane;
 	private JTextField tfruta;
@@ -58,14 +60,14 @@ public class fechagui2 extends JFrame {
 	 
 	 
 	public fechagui2() {
-		arrayCombis[1]= new Combi ("Conductor ", 1, null, null,0, 1, "Ruta norte");
-		arrayCombis[2]= new Combi ("Conductor2", 2, null, null,0, 1, "Ruta norte");
-		arrayCombis[3]= new Combi ("Conductor3", 3, null, null,0, 1, "Ruta norte");
-		arrayCombis[4]= new Combi ("Conductor4", 4, null, null,0, 2, "Ruta sur");
-		arrayCombis[5]= new Combi ("Conductor5", 5, null, null,0, 2, "Ruta sur");
-		arrayCombis[6]= new Combi ("Conductor6", 6, null, null,0, 2, "Ruta sur");
+		arrayCombis[0]= new Combi ("Conductor ", 1, null, null,0, 1, "Ruta norte");
+		arrayCombis[1]= new Combi ("Conductor2", 2, null, null,0, 1, "Ruta norte");
+		arrayCombis[2]= new Combi ("Conductor3", 3, null, null,0, 1, "Ruta norte");
+		arrayCombis[3]= new Combi ("Conductor4", 4, null, null,0, 2, "Ruta sur");
+		arrayCombis[4]= new Combi ("Conductor5", 5, null, null,0, 2, "Ruta sur");
+		arrayCombis[5]= new Combi ("Conductor6", 6, null, null,0, 2, "Ruta sur");
 		arrayRuta[0]=new ruta(1,"Ruta norte");
-		arrayRuta[0]=new ruta(2,"Ruta sur");
+		arrayRuta[1]=new ruta(2,"Ruta sur");
 
 			
 		 
@@ -118,7 +120,7 @@ public class fechagui2 extends JFrame {
 		tfruta.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Combi: ");
-		lblNewLabel_2.setBounds(201, 134, 88, 13);
+		lblNewLabel_2.setBounds(173, 134, 88, 13);
 		contentPane.add(lblNewLabel_2);
 		
 		tfcombi = new JTextField();
@@ -154,12 +156,16 @@ public class fechagui2 extends JFrame {
 		JButton btnReporte = new JButton("Generar Reporte Final");
 		btnReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int combiident=Integer.parseInt(tfcombi.getText());
+				/*int combiident=Integer.parseInt(tfcombi.getText());
 				textconductor.setText(arrayCombis[combiident].getConductor());
 				textllegada.setText(arrayCombis[combiident].getLlegada());
 				textsalida.setText(arrayCombis[combiident].getSalida());
 				textruta.setText(arrayCombis[combiident].getRuta());
-				texttiempo.setText(String.valueOf(arrayCombis[combiident].getTiempo()));
+				texttiempo.setText(String.valueOf(arrayCombis[combiident].getTiempo()));*/
+				
+				//Crea el nuevo Jframe de reporteFinalGUI y le manda el array de combis
+				reporteFinalGUI reporte = new reporteFinalGUI(arrayCombis);
+				reporte.setVisible(true);
 			}
 		});
 		btnReporte.setBounds(138, 372, 176, 29);
@@ -220,8 +226,9 @@ public class fechagui2 extends JFrame {
 				tfcombi.setText(comboBox.getSelectedItem().toString());
 				limpiaControles();
 				lblNewLabel.setText("Registro");
-				tfruta.setText(arrayCombis[Integer.parseInt(comboBox.getSelectedItem().toString())].getRuta());
-				int combiident=Integer.parseInt(tfcombi.getText());
+				tfruta.setText(arrayCombis[Integer.parseInt(comboBox.getSelectedItem().toString())-1].getRuta());
+				//Hace el ajuste del entero que ve el usuario con -1 así "1" llama al espacio 0 del array de combis
+				int combiident=Integer.parseInt(tfcombi.getText())-1;
 				textconductor.setText(arrayCombis[combiident].getConductor());
 				textllegada.setText(arrayCombis[combiident].getLlegada());
 				textsalida.setText(arrayCombis[combiident].getSalida());
@@ -256,6 +263,25 @@ public class fechagui2 extends JFrame {
 		});
 		btnActualizar.setBounds(381, 372, 117, 29);
 		contentPane.add(btnActualizar);
+		
+		JButton btnGuardar = new JButton("Guardar");
+		
+		//Guarda la info de la combi ingresada en los textfields
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Obtiene la posicion de la combi en el array
+				int combiident=Integer.parseInt(tfcombi.getText())-1;
+				
+				//Guardar info nueva
+				arrayCombis[combiident].setConductor(textconductor.getText());
+				arrayCombis[combiident].setLlegada(textllegada.getText());
+				arrayCombis[combiident].setRuta(textruta.getText());
+				arrayCombis[combiident].setSalida(textsalida.getText());
+				arrayCombis[combiident].setTiempo(Integer.parseInt(texttiempo.getText()));
+			}
+		});
+		btnGuardar.setBounds(432, 263, 117, 29);
+		contentPane.add(btnGuardar);
 		
 		
 		

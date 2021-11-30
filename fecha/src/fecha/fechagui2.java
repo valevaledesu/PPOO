@@ -60,12 +60,12 @@ public class fechagui2 extends JFrame {
 	 
 	 
 	public fechagui2() {
-		arrayCombis[0]= new Combi ("Conductor ", 1, null, null,0, 1, "Ruta norte");
-		arrayCombis[1]= new Combi ("Conductor2", 2, null, null,0, 1, "Ruta norte");
-		arrayCombis[2]= new Combi ("Conductor3", 3, null, null,0, 1, "Ruta norte");
-		arrayCombis[3]= new Combi ("Conductor4", 4, null, null,0, 2, "Ruta sur");
-		arrayCombis[4]= new Combi ("Conductor5", 5, null, null,0, 2, "Ruta sur");
-		arrayCombis[5]= new Combi ("Conductor6", 6, null, null,0, 2, "Ruta sur");
+		arrayCombis[0]= new Combi ("Conductor ", 1, null, null,"0", 1, "Ruta norte");
+		arrayCombis[1]= new Combi ("Conductor2", 2, null, null,"0", 1, "Ruta norte");
+		arrayCombis[2]= new Combi ("Conductor3", 3, null, null,"0", 1, "Ruta norte");
+		arrayCombis[3]= new Combi ("Conductor4", 4, null, null,"0", 2, "Ruta sur");
+		arrayCombis[4]= new Combi ("Conductor5", 5, null, null,"0", 2, "Ruta sur");
+		arrayCombis[5]= new Combi ("Conductor6", 6, null, null,"0", 2, "Ruta sur");
 		arrayRuta[0]=new ruta(1,"Ruta norte");
 		arrayRuta[1]=new ruta(2,"Ruta sur");
 
@@ -278,7 +278,7 @@ public class fechagui2 extends JFrame {
 				arrayCombis[combiident].setLlegada(textllegada.getText());
 				arrayCombis[combiident].setRuta(textruta.getText());
 				arrayCombis[combiident].setSalida(textsalida.getText());
-				arrayCombis[combiident].setTiempo(Integer.parseInt(texttiempo.getText()));
+				arrayCombis[combiident].setTiempo(texttiempo.getText());
 			}
 		});
 		btnGuardar.setBounds(432, 263, 117, 29);

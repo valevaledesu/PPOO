@@ -30,7 +30,7 @@ public class reporteFinalGUI extends JFrame {
 			public void run() {
 				try {
 					Combi[] combis = new Combi[1];
-					combis[0] = new Combi("Hola", 1 , "asdas", "adas", 3,4, "adas");
+					combis[0] = new Combi("Hola", 1 , "asdas", "adas", "s",4, "adas");
 					reporteFinalGUI frame = new reporteFinalGUI(combis);
 					frame.setVisible(true);
 				} catch (Exception e) {

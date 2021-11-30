@@ -54,13 +54,13 @@ public class fechagui extends JFrame {
 				
 				
 				String Usuario = "admin";
-				String Contraseña="12345";
+				String Contrase�a="12345";
 				
 				String Pass = new String(passwordField.getPassword());
 				
-				if(textField.getText().equals(Usuario)&& Pass.equals(Contraseña) ) {
+				if(textField.getText().equals(Usuario)&& Pass.equals(Contrase�a) ) {
 					
-					RutaCombi RC = new RutaCombi();
+					fechagui2 RC = new fechagui2();
 					RC.setVisible(true);
 					dispose();
 					
@@ -92,9 +92,9 @@ public class fechagui extends JFrame {
 		lbUsuario.setBounds(57, 130, 61, 16);
 		contentPane.add(lbUsuario);
 		
-		JLabel lblContraseña = new JLabel("Contraseña");
-		lblContraseña.setBounds(57, 213, 85, 16);
-		contentPane.add(lblContraseña);
+		JLabel lblContrase�a = new JLabel("Contraseña");
+		lblContrase�a.setBounds(57, 213, 85, 16);
+		contentPane.add(lblContrase�a);
 		
 		textField = new JTextField();
 		textField.setBounds(181, 125, 257, 26);

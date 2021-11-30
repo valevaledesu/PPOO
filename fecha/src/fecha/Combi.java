@@ -5,10 +5,10 @@ public class Combi extends ruta{
 	private String llegada;
 	private String salida;
 	private int num;
-	private int tiempo;
+	private String tiempo;
 
 	
-	public Combi(String Conductor,  int num, String llegada, String salida,int tiempo, int numruta, String ruta) {
+	public Combi(String Conductor,  int num, String llegada, String salida,String tiempo, int numruta, String ruta) {
 	super (numruta, ruta); 
 	this.Conductor=Conductor;
 	this.num=num;
@@ -58,12 +58,12 @@ public class Combi extends ruta{
 	}
 
 
-	public int getTiempo() {
+	public String getTiempo() {
 		return tiempo;
 	}
 
 
-	public void setTiempo(int tiempo) {
+	public void setTiempo(String tiempo) {
 		this.tiempo = tiempo;
 	}
 

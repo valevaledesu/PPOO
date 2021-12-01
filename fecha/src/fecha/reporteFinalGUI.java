@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -17,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.SystemColor;
+import javax.swing.border.EtchedBorder;
 
 public class reporteFinalGUI extends JFrame {
 
@@ -59,31 +62,32 @@ public class reporteFinalGUI extends JFrame {
 		setFont(new Font("Apple Symbols", Font.PLAIN, 12));
 		setForeground(UIManager.getColor("TextPane.selectionBackground"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 608, 406);
+		setBounds(100, 100, 640, 418);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.scrollbar);
 		contentPane.setForeground(UIManager.getColor("TextPane.selectionBackground"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Reporte generado por:");
-		lblNewLabel.setBounds(47, 68, 160, 16);
+		lblNewLabel.setBounds(67, 68, 160, 16);
 		contentPane.add(lblNewLabel);
 		
 		textFieldGeneradoPor = new JTextField();
 		textFieldGeneradoPor.setEditable(false);
-		textFieldGeneradoPor.setBounds(194, 63, 168, 26);
+		textFieldGeneradoPor.setBounds(215, 64, 168, 26);
 		contentPane.add(textFieldGeneradoPor);
 		textFieldGeneradoPor.setColumns(10);
 		textFieldGeneradoPor.setText("admin");
 		
 		JLabel lblNewLabel_1 = new JLabel("a las:");
-		lblNewLabel_1.setBounds(374, 68, 61, 16);
+		lblNewLabel_1.setBounds(384, 68, 61, 16);
 		contentPane.add(lblNewLabel_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
-		textField_1.setBounds(417, 63, 130, 26);
+		textField_1.setBounds(437, 64, 130, 26);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		textField_1.setText(ahora.toString().substring(0, 5));
@@ -121,10 +125,17 @@ public class reporteFinalGUI extends JFrame {
 										arrayCombis[5].getSalida(), arrayCombis[5].getRuta(), String.valueOf(arrayCombis[5].getTiempo())},
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column", "New column"
+				"Conductor", "Llegada", "Salida", "Ruta", "Tiempo de recorrido"
 			}
 		));
-		table.setBounds(47, 115, 500, 166);
+		table.setBounds(67, 150, 500, 114);
 		contentPane.add(table);
+		table.setEnabled(false);
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		    scrollPane.setBounds(67, 150, 500, 114);
+		    getContentPane().add(scrollPane);
+		    
 	}
 }

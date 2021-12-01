@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -16,10 +17,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+
 import java.awt.Font;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JCheckBox;
 
 public class fechagui2 extends JFrame {
@@ -44,6 +48,8 @@ public class fechagui2 extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
+				
 				try {
 					fechagui2 frame = new fechagui2();
 					frame.setVisible(true);
@@ -59,6 +65,20 @@ public class fechagui2 extends JFrame {
 	 
 	 
 	public fechagui2() {
+		/*try{
+			 
+			  JFrame.setDefaultLookAndFeelDecorated(true);
+			  JDialog.setDefaultLookAndFeelDecorated(true);
+			  //UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+			  //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			  //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			  //UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+			}
+			catch (Exception e)
+			 {
+			  e.printStackTrace();
+			 } */
+		  
 		arrayCombis[0]= new Combi ("Conductor ", 1, null, null,"0", 1, "Ruta norte");
 		arrayCombis[1]= new Combi ("Conductor2", 2, null, null,"0", 1, "Ruta norte");
 		arrayCombis[2]= new Combi ("Conductor3", 3, null, null,"0", 1, "Ruta norte");
@@ -72,7 +92,7 @@ public class fechagui2 extends JFrame {
 		 
 	        
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 616, 448);
+		setBounds(100, 100, 622, 452);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -170,6 +190,7 @@ public class fechagui2 extends JFrame {
 		contentPane.add(btnLlegada);
 		
 		JButton btnReporte = new JButton("Generar Reporte Final");
+		btnReporte.setIcon(new ImageIcon(fechagui2.class.getResource("/Iconos/reporte2 (1).png")));
 		btnReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*int combiident=Integer.parseInt(tfcombi.getText());
@@ -184,7 +205,7 @@ public class fechagui2 extends JFrame {
 				reporte.setVisible(true);
 			}
 		});
-		btnReporte.setBounds(138, 372, 176, 29);
+		btnReporte.setBounds(173, 365, 209, 29);
 		contentPane.add(btnReporte);
 		
 		textconductor = new JTextField();

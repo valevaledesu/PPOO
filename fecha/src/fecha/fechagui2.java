@@ -25,6 +25,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JCheckBox;
+import java.awt.Toolkit;
+import javax.swing.Box;
+import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.Window.Type;
 
 public class fechagui2 extends JFrame {
 	
@@ -65,6 +70,8 @@ public class fechagui2 extends JFrame {
 	 
 	 
 	public fechagui2() {
+		setTitle("Registro de salidas y llegadas");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(fechagui2.class.getResource("/Iconos/van.png")));
 		/*try{
 			 
 			  JFrame.setDefaultLookAndFeelDecorated(true);
@@ -94,6 +101,7 @@ public class fechagui2 extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 622, 452);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.window);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -104,6 +112,8 @@ public class fechagui2 extends JFrame {
 		ArrayList<LocalTime> tiempos = new ArrayList<LocalTime>();
 
 		JButton btnSalida = new JButton("Salida");
+		btnSalida.setBackground(new Color(95, 158, 160));
+		btnSalida.setForeground(new Color(0, 0, 0));
 		btnSalida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		
@@ -125,27 +135,29 @@ public class fechagui2 extends JFrame {
 				}
 			}
 		});
-		btnSalida.setBounds(347, 49, 117, 29);
+		btnSalida.setBounds(331, 47, 117, 29);
 		contentPane.add(btnSalida);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ruta: ");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(18, 102, 45, 16);
+		lblNewLabel_1.setBounds(32, 79, 45, 16);
 		contentPane.add(lblNewLabel_1);
 		
 		tfruta = new JTextField();
 		tfruta.setEditable(false);
-		tfruta.setBounds(61, 100, 109, 19);
+		tfruta.setBounds(75, 77, 109, 19);
 		contentPane.add(tfruta);
 		tfruta.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Combi: ");
-		lblNewLabel_2.setBounds(173, 134, 88, 13);
+		JLabel lblNewLabel_2 = new JLabel("Combi : ");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_2.setForeground(new Color(0, 0, 0));
+		lblNewLabel_2.setBounds(188, 133, 54, 17);
 		contentPane.add(lblNewLabel_2);
 		
 		tfcombi = new JTextField();
 		tfcombi.setEditable(false);
-		tfcombi.setBounds(61, 130, 45, 19);
+		tfcombi.setBounds(75, 107, 45, 19);
 		contentPane.add(tfcombi);
 		tfcombi.setColumns(10);
 		
@@ -154,6 +166,7 @@ public class fechagui2 extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		JButton btnLlegada = new JButton("Llegada");
+		btnLlegada.setBackground(new Color(95, 158, 160));
 		btnLlegada.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LocalTime ahora = LocalTime.now();
@@ -186,10 +199,12 @@ public class fechagui2 extends JFrame {
 				
 			}
 		});
-		btnLlegada.setBounds(464, 49, 117, 29);
+		btnLlegada.setBounds(466, 47, 117, 29);
 		contentPane.add(btnLlegada);
 		
 		JButton btnReporte = new JButton("Generar Reporte Final");
+		btnReporte.setForeground(new Color(0, 0, 0));
+		btnReporte.setBackground(new Color(47, 79, 79));
 		btnReporte.setIcon(new ImageIcon(fechagui2.class.getResource("/Iconos/reporte2 (1).png")));
 		btnReporte.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -214,16 +229,19 @@ public class fechagui2 extends JFrame {
 		textconductor.setColumns(10);
 		
 		textllegada = new JTextField();
+		textllegada.setEditable(false);
 		textllegada.setBounds(309, 267, 66, 17);
 		contentPane.add(textllegada);
 		textllegada.setColumns(10);
 		
 		textsalida = new JTextField();
+		textsalida.setEditable(false);
 		textsalida.setBounds(309, 237, 66, 17);
 		contentPane.add(textsalida);
 		textsalida.setColumns(10);
 		
 		texttiempo = new JTextField();
+		texttiempo.setEditable(false);
 		texttiempo.setBounds(309, 292, 66, 17);
 		contentPane.add(texttiempo);
 		texttiempo.setColumns(10);
@@ -242,7 +260,7 @@ public class fechagui2 extends JFrame {
 		contentPane.add(lblNewLabel_4_1);
 		
 		JLabel lblNewLabel_4_2 = new JLabel("Hora de llegada");
-		lblNewLabel_4_2.setBounds(201, 270, 100, 11);
+		lblNewLabel_4_2.setBounds(201, 267, 100, 17);
 		contentPane.add(lblNewLabel_4_2);
 		
 		JLabel lblNewLabel_4_3 = new JLabel("Hora de salida");
@@ -258,6 +276,7 @@ public class fechagui2 extends JFrame {
 		
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(SystemColor.inactiveCaption);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tfcombi.setText(comboBox.getSelectedItem().toString());
@@ -282,13 +301,16 @@ public class fechagui2 extends JFrame {
 		comboBox.addItem("5"); 
 		comboBox.addItem("6");
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(32, 34, 61, 16);
-		contentPane.add(lblNewLabel_5);
+		JLabel Admin = new JLabel("Admin");
+		Admin.setBackground(SystemColor.activeCaption);
+		Admin.setIcon(new ImageIcon(fechagui2.class.getResource("/Iconos/User (1).png")));
+		Admin.setBounds(32, 10, 66, 25);
+		contentPane.add(Admin);
 		
 		
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setBackground(new Color(112, 128, 144));
 		
 		//Guarda la info de la combi ingresada en los textfields
 		btnGuardar.addActionListener(new ActionListener() {

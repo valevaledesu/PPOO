@@ -16,6 +16,10 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class fechagui extends JFrame {
 
@@ -41,13 +45,19 @@ public class fechagui extends JFrame {
 	 * Create the frame.
 	 */
 	public fechagui() {
+		setTitle("Inicio de administrador");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(fechagui.class.getResource("/Iconos/van.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 554, 371);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.window);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JButton btnCambioJframe1 = new JButton("Acceder");
+		btnCambioJframe1.setHorizontalAlignment(SwingConstants.LEFT);
+		btnCambioJframe1.setIcon(new ImageIcon(fechagui.class.getResource("/Iconos/login (1).png")));
+		btnCambioJframe1.setBackground(SystemColor.activeCaption);
 		btnCambioJframe1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -64,13 +74,12 @@ public class fechagui extends JFrame {
 					RC.setVisible(true);
 					dispose();
 					
-					fechagui2 abrir = new fechagui2();
-					abrir.setVisible(true);
+					
 					
 				}
 				else {
 					
-					JOptionPane.showInputDialog(this, "Usuario o Contraseña Incorrectas");
+					JOptionPane.showInputDialog(this, "Usuario o Contrase�a Incorrectas");
 				}
 
 				
@@ -79,7 +88,7 @@ public class fechagui extends JFrame {
 			
 			
 		});
-		btnCambioJframe1.setBounds(223, 293, 117, 29);
+		btnCambioJframe1.setBounds(248, 275, 117, 29);
 		btnCambioJframe1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 								
@@ -92,12 +101,12 @@ public class fechagui extends JFrame {
 		lbUsuario.setBounds(57, 130, 61, 16);
 		contentPane.add(lbUsuario);
 		
-		JLabel lblContrasena = new JLabel("Contraseña");
+		JLabel lblContrasena = new JLabel("Contrase\u00F1a");
 		lblContrasena.setBounds(57, 213, 85, 16);
 		contentPane.add(lblContrasena);
 		
 		textField = new JTextField();
-		textField.setBounds(181, 125, 257, 26);
+		textField.setBounds(181, 126, 257, 26);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -106,7 +115,12 @@ public class fechagui extends JFrame {
 		contentPane.add(passwordField);
 		
 		JLabel lblNewLabel = new JLabel("ADMINISTRADOR");
-		lblNewLabel.setBounds(231, 26, 124, 16);
+		lblNewLabel.setBounds(264, 25, 117, 16);
 		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(fechagui.class.getResource("/Iconos/LOGO.jpg")));
+		lblNewLabel_1.setBounds(39, 8, 77, 66);
+		contentPane.add(lblNewLabel_1);
 	}
 }

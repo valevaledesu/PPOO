@@ -61,7 +61,7 @@ public class reporteFinalGUI extends JFrame {
 		this.arrayCombis = arrayCombis;
 		setFont(new Font("Apple Symbols", Font.PLAIN, 12));
 		setForeground(UIManager.getColor("TextPane.selectionBackground"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 640, 418);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.scrollbar);
